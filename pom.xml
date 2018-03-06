@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.yusx.dubbo</groupId>
+  <artifactId>boot-dubbo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <description>boot-dubbo</description>
+  <modules>
+    <module>dubbo-provider</module>
+    <module>dubbo-consumer</module>
+    <module>dubbo-api</module>
+  </modules>
+  
+  	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<com.alibaba.dubbo.version>2.5.3</com.alibaba.dubbo.version>  
+        <org.apache.zookeeper.version>3.4.10</org.apache.zookeeper.version>  
+        <com.github.sgroschupf.zkclient.version>0.1</com.github.sgroschupf.zkclient.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+		<!--dubbo  -->
+		<dependency>  
+            <groupId>com.alibaba</groupId>  
+            <artifactId>dubbo</artifactId>  
+            <exclusions>  
+                <exclusion>  
+                    <groupId>org.springframework</groupId>  
+                    <artifactId>spring</artifactId>  
+                </exclusion>  
+            </exclusions>  
+            <version>${com.alibaba.dubbo.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.apache.zookeeper</groupId>  
+            <artifactId>zookeeper</artifactId>  
+            <version>${org.apache.zookeeper.version}</version>  
+		    <exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+        </dependency>  
+        <dependency>  
+            <groupId>com.github.sgroschupf</groupId>  
+            <artifactId>zkclient</artifactId>  
+            <version>${com.github.sgroschupf.zkclient.version}</version>  
+        </dependency>
+        
+        <dependency>
+        	<groupId>org.yusx.dubbo</groupId>
+        	<artifactId>dubbo-api</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+        	<groupId>com.yusx.remote.api</groupId>
+		  <artifactId>remote-api</artifactId>
+		  <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+	</dependencies>
+	</dependencyManagement>
+	
+	<profiles>
+		<profile>
+	        <id>dev</id>  
+	        <!-- repositories and pluginRepositories here-->  
+	        <repositories>
+	            <repository>
+	                <id>nexus-aliyun</id>
+	                <name>Nexus aliyun</name>
+	                <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+	                <releases>
+	                    <enabled>true</enabled>
+	                </releases>
+	                <snapshots>
+	                    <enabled>true</enabled>
+	                </snapshots>
+	            </repository>
+	        </repositories>
+	    </profile>
+	</profiles>
+</project>

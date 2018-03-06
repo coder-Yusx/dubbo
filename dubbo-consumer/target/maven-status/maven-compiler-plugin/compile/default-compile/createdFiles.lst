@@ -1,0 +1,3 @@
+org\dubbo\consumer\test\DemoController.class
+org\dubbo\consumer\DubboConsumerApplication.class
+org\dubbo\consumer\test\HelloTest.class
